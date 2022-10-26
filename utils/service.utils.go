@@ -5,10 +5,10 @@
 	@Purpose: error.utils.go provides function that helps handle exceptions
 */
 
-/* @package initializers */
+// @package
 package utils
 
-// import packages
+// @import
 import (
 	"NFTir/agent/models"
 	"encoding/json"
@@ -17,11 +17,9 @@ import (
 	"github.com/jamespearly/loggly"
 )
 
-/*
-@func: HandleException() - loads environment varables
-
-@param e error - the passed in error
-*/
+// @dev Loads environment varables
+//
+// @param e error
 func HandleException(e error) {
 	if (e != nil) {
 		log.Fatal(e);
@@ -29,13 +27,11 @@ func HandleException(e error) {
 }
 
 
-/**
-@func: HandleLoggly() - Handle interacting with Loggly
-
-@param httpLogglyMessage models.HttpLogglyMessage
-
-@param level string
-*/
+// @dev Handles interacting with Loggly
+// 
+// @param httpLogglyMessage models.HttpLogglyMessage
+// 
+// @param level string
 func HandleLoggly(logglyMessage models.LogglyMessage, level string) {
 	logglyClient := loggly.New("NFTir")
 

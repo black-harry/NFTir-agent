@@ -5,10 +5,10 @@
 	@Purpose: dynamodb.service.go provides function(s) to help client interact with AWS services
 */
 
-/* @package services */
+// @package
 package utils
 
-// import packages
+// @import
 import (
 	"NFTir/agent/models"
 	"log"
@@ -20,12 +20,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
-/*
-@func: EstablishAwsDynamodbSession() - Establishing a connection to AWS DynamoDB
-
-@return
-	- db *dynamodb.DynamoDB
-*/
+// @dev Establishes a connection to AWS DynamoDB
+//
+// @return db *dynamodb.DynamoDB
 func EstablishAwsDynamodbSession() (*dynamodb.DynamoDB) {
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: session.SharedConfigEnable,
@@ -33,13 +30,11 @@ func EstablishAwsDynamodbSession() (*dynamodb.DynamoDB) {
 	return dynamodb.New(sess);
 }
 
-/*
-@func: CreateNFTirTable() - create an NFTir table on AWS DynamoDB
-
-@params:
-	- tableName string: the name of the table
-	- db *dynamodb.DynamoDB: dynamodb connection
-*/
+// @dev Creates an NFTir table on AWS DynamoDB
+// 
+// @params tableName string: the name of the table
+// 
+// @params db *dynamodb.DynamoDB: dynamodb connection
 func CreateNFTirTable(tableName string, db *dynamodb.DynamoDB) {
 	// create table input
 	tableInput := &dynamodb.CreateTableInput{
@@ -64,11 +59,11 @@ func CreateNFTirTable(tableName string, db *dynamodb.DynamoDB) {
 
 				// KeyType = HASH - The attribute that DynamoDB will use to partition the data onto one of its many storage nodes
 				// If ONLY partition key is specified and NOT a sort key, all records must have a unique partition key value.
-				
+				// 
 				// KeyType = RANGE - The secondary key that can be optionally decided to use alongside the Partition Key
-				
+				// 
 				// Traditional SQL Primary Key can be either just a Partition Key, OR Partition Key + Sort Key (a.k.a composite primary key)
-
+				// 
 				// With composite primary key, data can be stored with the SAME parition key value but a different sort key value
 				// Read more on partition and sort key https://www.beabetterdev.com/2022/02/07/dynamodb-partition-key-vs-sort-key/
 				KeyType: aws.String("HASH"), 
@@ -95,14 +90,14 @@ func CreateNFTirTable(tableName string, db *dynamodb.DynamoDB) {
 	log.Printf("Table "+tableName+" successfully created! Wating for AWS to initialize table...")
 }
 
-/*
-@func: PutCollectionInput() - Putting collection items to dynamoDB table
 
-@params:
-	- tableName string: the name of the table
-	- collection models.Collection: the collection item got back from NFTGo server
-	- db *dynamodb.DynamoDB: dynamodb connection
-*/
+// @dev Puts collection items to dynamoDB table
+// 
+// @dev tableName string - the name of the table
+// 
+// @dev collection models.Collection - the collection item got back from NFTGo server
+// 
+// @dev db *dynamodb.DynamoDB: dynamodb connection
 func PutCollectionInput(tableName string, collection models.Collection, db *dynamodb.DynamoDB) {
 	log.Println(collection)
 	// Get collectionAV from dynamodbattribute.marshalMap()
@@ -120,13 +115,12 @@ func PutCollectionInput(tableName string, collection models.Collection, db *dyna
 	HandleException(e);
 }
 
-/*
-@func: DeleteTable() - Deleting table if table already exists
 
-@params: 
-	- tableName string: the name of the table
-	- db *dynamodb.DynamoDB: dynamodb connection
-*/
+// @dev Deletes table if table already exists
+// 
+// @param tableName string: the name of the table
+// 
+// @param db *dynamodb.DynamoDB: dynamodb connection
 func DeleteTable(tableName string, db *dynamodb.DynamoDB) {
 	// Creating ListTableInput parameter
 	listTableInput := &dynamodb.ListTablesInput{}
@@ -159,13 +153,13 @@ func DeleteTable(tableName string, db *dynamodb.DynamoDB) {
 }
 
 
-/*
-@func: setUpTableAsync() - set up dynamodb table
-@params:
-	- tableName string: the name of the table
-	- db *dynamodb.DynamoDB: dynamodb connection
-@TODO: Implement real ASYNC/AWAIT
-*/
+// @dev Sets up dynamodb table
+// 
+// @params tableName string: the name of the table
+// 
+// @param db *dynamodb.DynamoDB: dynamodb connection
+// 
+// @TODO: Implement real ASYNC/AWAIT
 func SetUpTableAsync(tableName string, db *dynamodb.DynamoDB) {
 	log.Println("Starting polling process...")
 

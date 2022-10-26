@@ -5,9 +5,10 @@
 	@Purpose: collections.controller.go provides function to make an API request to NFTGo server
 */
 
-/* @package models */
+// @package
 package utils
 
+// @import
 import (
 	"NFTir/agent/models"
 	"encoding/json"
@@ -20,14 +21,13 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-/*
-@func RtrieveCollectionRanking() - Controller that makes an http request to NFTGoAPI server
-
-@return
-	- NFTGoData *models.NFTGoData := models.NFTGoData
-	- responseLen int: the length of the response
-	- err error: error
-*/
+// @dev Controller that makes an http request to NFTGoAPI server
+//
+// @return NFTGoData *models.NFTGoData := models.NFTGoData
+//
+// @return responseLen int: the length of the response
+//
+// @return err error: error
 func retrieveCollectionRanking() (NFTGoData *models.NFTGoData, responseLen int, err error) {
 	log.Println("Fetching data from NFTGo server...")
 	// retrieve env vars
@@ -65,15 +65,15 @@ func retrieveCollectionRanking() (NFTGoData *models.NFTGoData, responseLen int, 
 }
 
 
-/*
-@func: clientProcessor() - processes parameters and sends message to Loggly 
-
-@params
-	- logglyClient *loggly.ClientType := jearly/loggly
-	- NFTGoData *models.NFTGoData := models.NFTGoData
-	- responseLen int: the length of the response
-	- err error: error
-*/
+// @dev Processes parameters and sends message to Loggly 
+// 
+// @param logglyClient *loggly.ClientType := jearly/loggly
+// 
+// @param NFTGoData *models.NFTGoData := models.NFTGoData
+// 
+// @param responseLen int: the length of the response
+// 
+// @param err error: error
 func clientProcessor(tableName string, NFTGoData *models.NFTGoData, responseLen int, err error, db *dynamodb.DynamoDB)  {
 	
 	// if err := controllers.RetrieveCollectionRanking() != nil, send a failed message to loggly then fatalize the process with err message and a call to os.Exit(1)
@@ -105,13 +105,13 @@ func clientProcessor(tableName string, NFTGoData *models.NFTGoData, responseLen 
 }
 
 
-/*
-@func: fetchDataAsync() - fetching data from NFTGo server
-@params:
-	- logglyClient *loggly.ClientType := jearly/loggly
-	- tableName string: the name of the table
-	- db *dynamodb.DynamoDB: dynamodb connection
-*/
+// @dev Fetches data from NFTGo server
+// 
+// @paramlogglyClient *loggly.ClientType := jearly/loggly
+// 
+// @param tableName string: the name of the table
+//
+// @param db *dynamodb.DynamoDB: dynamodb connection
 func FetchDataAsync(tableName string, db *dynamodb.DynamoDB) {
 	go func () {
 		// Fetching data from NFTGo server

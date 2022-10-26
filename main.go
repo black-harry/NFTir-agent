@@ -4,10 +4,10 @@
 	@Instructor: Professor James Early
 */
 
-// @package: main
+// @package
 package main
 
-// Import packages
+// @import
 import (
 	"NFTir/agent/controllers"
 	"NFTir/agent/utils"
@@ -16,12 +16,12 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-// initialize global variables
+// @dev initialize global variables
 var (
 	db *dynamodb.DynamoDB
 )
 
-/* @func: init() - run before main() */
+// @dev Run before main()
 func init()  {
 	if (os.Getenv("APP_MODE") != "release") {
 		utils.LoadEnvVars()
@@ -29,7 +29,7 @@ func init()  {
 	db = utils.EstablishAwsDynamodbSession()
 }
 
-/* @function main() - root function */
+// @dev Root function 
 func main()  {
 	controllers.PeriodicallyFetchData(os.Getenv("TABLE_NAME"), db)
 }

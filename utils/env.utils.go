@@ -5,17 +5,15 @@
 	@Purpose: loadEnvVars.go provide function that helps load environemnt variables
 */
 
-/* @package initializers */
+// @package
 package utils
 
-// import packages
+// @import
 import (
 	"github.com/joho/godotenv"
 )
 
-/*
-@func: LoadEnvVars() - loads environment varables
-*/
+// @dev Loads environment varables
 func LoadEnvVars()  {
 	err := godotenv.Load()
 	HandleException(err);

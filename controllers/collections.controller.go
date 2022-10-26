@@ -5,24 +5,23 @@
 	@Purpose: collections.service.go provides function(s) to help client process data
 */
 
-/* @package services */
+// @package
 package controllers
 
-// import packages
+// @import
 import (
 	"NFTir/agent/utils"
 
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-/*
-@func: PeriodicallyFetchData() - fetch data in 6 hours
-
-@params
-	- logglyClient *loggly.ClientType := jearly/loggly
-	- tableName string: the name of the table
-	- db *dynamodb.DynamoDB: dynamodb connection
-*/
+// @dev Fetches data in 6 hours
+//
+// @param logglyClient *loggly.ClientType := jearly/loggly
+//
+// @param tableName string: the name of the table
+//
+// @param db *dynamodb.DynamoDB: dynamodb connection
 func PeriodicallyFetchData(tableName string, db *dynamodb.DynamoDB) {
 	for { // infinite loop. Gap time = 6 hours
 		utils.SetUpTableAsync(tableName, db);

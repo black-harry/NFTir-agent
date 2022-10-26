@@ -5,10 +5,10 @@
 	@Purpose: collection.model.go provides NFTGoResponse struct which mimics the data received from the API request
 */
 
-/* @package models */
+// @package
 package models
 
-/* @struct Collection - Each item in collections slice in @struct/NFTGoResponse */
+// @notice Each item in collections slice in @struct/NFTGoResponse
 type Collection struct {
 	Last_updated 							uint 		`json:"last_updated"`
 	Blockchain 								string 		`json:"blockchain"`
@@ -35,7 +35,7 @@ type Collection struct {
 	Holder_num 								uint 		`json:"holder_num"`
 }
 
-/* @struct NFTGoResponse - final HTTP response from NFTGo API request*/
+// @notice Final HTTP response from NFTGo API request
 type NFTGoData struct {
 	Total			uint			`json:"total"`
 	Collections		[]Collection	`json:"collections"`
