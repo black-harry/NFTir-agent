@@ -1,5 +1,3 @@
-
-agent/.DS_Store
-.DS_Store
+.vscode
+agent
 .env
-aws-pem/student-1.cer

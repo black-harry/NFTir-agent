@@ -1,12 +1,48 @@
 <p align="center">
 <br />
-<h1 align="center">NFTir</h1>
-<h5 align="center">SUNY OSwego </h3>
-<h6 align="center">CSC 482 <h4>
+<h1 align="center">NFTir - Agent</h1>
 </p>
-
-###### Currently work in progress
 
 ## Overview
 
-NFTir is a comprised of two projects which are [NFTir/agent](https://github.com/logann131/NFTir/tree/master/agent) and [NFTir/server](https://github.com/logann131/NFTir/tree/master/server). NFTir utilizes [AWS services](https://aws.amazon.com/) and the [gin-gonic](https://github.com/gin-gonic/gin) framework to create a web service that polls the [NFTGo server](https://nftgo.io/) and hosts multiple RESTful endpoints that help processing metadata and information of specific NFTs.
+NFTir agent is a golang server which polls the NFTGo server every 6 hours to get a dataset of the top 25 NFTs ranking based on their trading volumes.
+The agent then breaks down the dataset into single items and push them into an Amazon DynamoDB table which will be used by the [NFTir RESTful server](https://github.com/logann131/NFTir/tree/master/server) to process the data.
+
+## Getting Started
+
+### Requirement
+
+- [git](https://git-scm.com/)
+- [golang](https://go.dev/)
+- [docker](https://www.docker.com/)
+- [aws-cli](https://aws.amazon.com/cli/)
+
+### Clone the repo
+
+```bash
+git clone https://github.com/logann131/NFTir.git
+cd NFTir/agent
+```
+
+### Set up environment variables
+
+At the root of the directory, create a .env file using .env.example as the template and fill out the variables.
+
+### Running the project
+
+```bash
+go run .
+```
+
+or
+
+```bash
+docker compose up --build
+```
+
+### Resources
+
+- [NFTGo.io](https://nftgo.io/)
+- [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
+- [AWS-CLI](https://aws.amazon.com/cli/)
+- [Golang](https://go.dev)
