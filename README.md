@@ -33,14 +33,15 @@ At the root of the directory, create a .env file using .env.example as the templ
 
 ### Running the project
 
+1. Build and run `agent` locally using `Make` scripts
 ```bash
-go run .
+make go-build-local
 ```
 
-or
+2. Build and run `agent` on Docker using `Make` scripts
 
 ```bash
-docker compose up --build
+make build-app
 ```
 
 ### Resources
