@@ -23,8 +23,8 @@ The agent then breaks down the dataset into single items and push them into an A
 ### Clone the repo
 
 ```bash
-git clone https://github.com/logann131/NFTir.git
-cd NFTir/agent
+git clone https://github.com/NFTir/agent.git
+cd agent
 ```
 
 ### Set up environment variables
