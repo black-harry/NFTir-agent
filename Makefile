@@ -1,5 +1,5 @@
 APP=agent
-SERVER_IMAGE=logan131/nftir-agent:$(SERVER_TAG)
+SERVER_IMAGE=logann131/nftir-agent:$(SERVER_TAG)
 SERVER_TAG=1.0
 DOCKER_RMI=docker rmi -f
 DOCKER_COMPOSE_BUILD=docker compose build --no-cache
