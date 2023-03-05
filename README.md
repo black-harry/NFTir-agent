@@ -5,8 +5,6 @@
 <h6 align="center">CSC 482 <h4>
 </p>
 
-###### Currently work in progress
-
 ## Overview
 NFTir agent is a golang server is engineered to periodically query the NFTGo server, with a 6 hours frequency, to acquire a dataset of the top 25 NFTs ranked by trading volume. The agent then breaks down the dataset into single items and push them into an Amazon DynamoDB table which will be used by the [NFTir RESTful server](https://github.com/NFTir/server) to process the data.
 
